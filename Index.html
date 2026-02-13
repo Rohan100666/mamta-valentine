@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mamta ❤️ Mine Forever</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Quicksand',sans-serif;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
+overflow:hidden;
+}
+
+.container{
+background:white;
+padding:50px 40px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,0.2);
+max-width:500px;
+animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:scale(0.9);}
+to{opacity:1;transform:scale(1);}
+}
+
+h1{
+font-family:'Pacifico',cursive;
+color:#ff4d6d;
+margin-bottom:15px;
+}
+
+p{
+color:#555;
+margin-bottom:25px;
+font-size:18px;
+}
+
+img{
+width:230px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.buttons{
+display:flex;
+gap:20px;
+justify-content:center;
+margin-top:10px;
+}
+
+button{
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.yes-btn{
+background:#ff4d6d;
+color:white;
+}
+
+.yes-btn:hover{
+transform:scale(1.1);
+}
+
+.no-btn{
+background:#ddd;
+position:relative;
+}
+
+.celebration{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ff4d6d;
+color:white;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+font-family:'Pacifico';
+animation:fadeIn 0.5s ease;
+}
+
+.celebration img{
+width:260px;
+border-radius:20px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FRONT PAGE -->
+<div class="container" id="mainPage">
+<h1>Mamta ❤️</h1>
+
+<img src="front.gif" alt="Cute Love Gif">
+
+<p>You are mine... mine... mine... 💕</p>
+
+<h1>Will you be my Valentine? 💖</h1>
+
+<div class="buttons">
+<button class="yes-btn" onclick="sayYes()">YES 😍</button>
+<button class="no-btn" id="noBtn" onmouseover="moveButton()">No 😜</button>
+</div>
+</div>
+
+<!-- CELEBRATION PAGE -->
+<div class="celebration" id="celebration">
+<h1>MINE FOREVER 💍❤️</h1>
+<p>Mamta, you just made my world complete 💖</p>
+
+<img src="kiss.gif" alt="Teddy Kiss">
+
+</div>
+
+<!-- SONG -->
+<audio id="mineSong">
+<source src="mine.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let noBtn = document.getElementById("noBtn");
+
+function moveButton(){
+noBtn.style.position="absolute";
+noBtn.style.top=Math.random()*80+"%";
+noBtn.style.left=Math.random()*80+"%";
+}
+
+function sayYes(){
+document.getElementById("mainPage").style.display="none";
+document.getElementById("celebration").style.display="flex";
+document.getElementById("mineSong").play();
+}
+</script>
+
+</body>
+</html>
