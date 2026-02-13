@@ -31,12 +31,7 @@ border-radius:30px;
 text-align:center;
 box-shadow:0 20px 60px rgba(0,0,0,0.2);
 max-width:500px;
-animation:fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:scale(0.9);}
-to{opacity:1;transform:scale(1);}
+transition:0.4s;
 }
 
 h1{
@@ -47,7 +42,7 @@ margin-bottom:15px;
 
 p{
 color:#555;
-margin-bottom:25px;
+margin-bottom:20px;
 font-size:18px;
 }
 
@@ -61,7 +56,6 @@ margin-bottom:20px;
 display:flex;
 gap:20px;
 justify-content:center;
-margin-top:10px;
 }
 
 button{
@@ -76,10 +70,7 @@ transition:0.3s;
 .yes-btn{
 background:#ff4d6d;
 color:white;
-}
-
-.yes-btn:hover{
-transform:scale(1.1);
+transform:scale(1);
 }
 
 .no-btn{
@@ -87,27 +78,55 @@ background:#ddd;
 position:relative;
 }
 
-.celebration{
+/* Celebration Page */
+.celebration,
+.gun-screen{
 display:none;
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:#ff4d6d;
-color:white;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 text-align:center;
 font-family:'Pacifico';
-animation:fadeIn 0.5s ease;
 }
 
-.celebration img{
-width:260px;
-border-radius:20px;
-margin-top:20px;
+.celebration{
+background:#ff4d6d;
+color:white;
+}
+
+.gun-screen{
+background:black;
+color:white;
+}
+
+.gun-screen h1{
+color:#ff4d6d;
+font-size:38px;
+margin-bottom:20px;
+}
+
+.gun-screen img{
+width:300px;
+margin-bottom:30px;
+}
+
+.big-yes{
+padding:20px 60px;
+font-size:26px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:50px;
+cursor:pointer;
+}
+
+.big-yes:hover{
+transform:scale(1.1);
 }
 
 </style>
@@ -115,38 +134,63 @@ margin-top:20px;
 
 <body>
 
-<!-- FRONT PAGE -->
+<!-- MAIN PAGE -->
 <div class="container" id="mainPage">
 <h1>Mamta ❤️</h1>
 
-<img src="front.gif" alt="Cute Love Gif">
+<img src="front.gif">
 
 <p>You are mine... mine... mine... 💕</p>
 
 <h1>Will you be my Valentine? 💖</h1>
 
 <div class="buttons">
-<button class="yes-btn" onclick="sayYes()">YES 😍</button>
-<button class="no-btn" id="noBtn" onmouseover="moveButton()">No 😜</button>
+<button class="yes-btn" id="yesBtn" onclick="sayYes()">YES 😍</button>
+<button class="no-btn" id="noBtn" onmouseover="handleNoHover()">No 😜</button>
 </div>
 </div>
 
-<!-- CELEBRATION PAGE -->
+<!-- GUN SCREEN -->
+<div class="gun-screen" id="gunScreen">
+<h1>Don't mess with me 😠🙂‍↕️</h1>
+<img src="gun.gif">
+<h2>There is only one option 😼</h2>
+<button class="big-yes" onclick="sayYes()">CLICK YES ❤️</button>
+</div>
+
+<!-- FINAL CELEBRATION -->
 <div class="celebration" id="celebration">
 <h1>MINE FOREVER 💍❤️</h1>
 <p>Mamta, you just made my world complete 💖</p>
-
-<img src="kiss.gif" alt="Teddy Kiss">
-
+<img src="kiss.gif">
 </div>
 
-<!-- SONG -->
 <audio id="mineSong">
 <source src="mine.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
 let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let hoverCount = 0;
+let yesScale = 1;
+
+function handleNoHover(){
+
+hoverCount++;
+
+yesScale += 0.2;
+yesBtn.style.transform = "scale(" + yesScale + ")";
+
+moveButton();
+
+if(hoverCount >= 6){
+document.getElementById("mainPage").style.display="none";
+document.getElementById("gunScreen").style.display="flex";
+}
+
+}
 
 function moveButton(){
 noBtn.style.position="absolute";
@@ -156,9 +200,13 @@ noBtn.style.left=Math.random()*80+"%";
 
 function sayYes(){
 document.getElementById("mainPage").style.display="none";
+document.getElementById("gunScreen").style.display="none";
 document.getElementById("celebration").style.display="flex";
-document.getElementById("mineSong").play();
+
+let song = document.getElementById("mineSong");
+song.play();
 }
+
 </script>
 
 </body>
